@@ -1,7 +1,11 @@
 steps:
   # build the container image
   - name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "gcr.io/$PROJECT_ID/${_CLOUD_RUN_SERVICE}", "."]
+    args: ["build", "-t", "gcr.io/$PROJECT_ID/${_CLOUD_RUN_SERVICE}", ".",
+    '--build-arg',
+    'PORT=${_PORT}',
+    '--build-arg',
+    'HOST=${_HOST}']
     # push the container image to Container Registry
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/$PROJECT_ID/${_CLOUD_RUN_SERVICE}"]
@@ -32,3 +36,5 @@ options:
 
 substitutions:
   _CLOUD_RUN_SERVICE: "cloud-run-tcb"
+  _PORT: "8080"
+  _HOST: "0.0.0.0"
