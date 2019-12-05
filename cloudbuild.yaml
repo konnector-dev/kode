@@ -26,7 +26,10 @@ steps:
         "--platform",
         "managed",
         "--memory",
-        "128Mi"
+        '128Mi',
+        '--update-env-vars',
+        'PORT=${_PORT},
+        HOST=${_HOST}'
       ]
 images:
   - gcr.io/$PROJECT_ID/${_CLOUD_RUN_SERVICE}
