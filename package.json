@@ -1,0 +1,26 @@
+{
+  "name": "kode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.mix.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build-css": "tailwind build resources/tailwind-src/style.css -o public/css/tailwind-style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/konnector-dev/kode.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/konnector-dev/kode/issues"
+  },
+  "homepage": "https://github.com/konnector-dev/kode#readme",
+  "dependencies": {
+    "tailwindcss": "^1.2.0"
+  }
+}
