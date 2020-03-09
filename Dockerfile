@@ -19,6 +19,8 @@ RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/a
 ARG _APP_KEY
 ENV APP_KEY=${_APP_KEY}
 
+COPY . .
+
 RUN composer install -n --prefer-dist
 
 RUN chown -R www-data:www-data storage bootstrap
