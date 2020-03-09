@@ -7,6 +7,8 @@
 
     <title><?php echo env('APP_NAME', 'Kode'); ?></title>
 
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link href="{{  url('/assets/fonts/font-awesome.min.css') }}" rel="stylesheet">
