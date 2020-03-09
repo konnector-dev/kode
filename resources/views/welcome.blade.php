@@ -11,93 +11,35 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link href="{{  url('/css/tailwind-style.css') }}" rel="stylesheet">
     <link href="{{  url('/assets/fonts/font-awesome.min.css') }}" rel="stylesheet">
 
-    <!-- Styles -->
-    <style>
-        html,
-        body {
-            background-color: #060606;
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .full-height {
-            height: 100vh;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 84px;
-        }
-
-        .links>a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-    </style>
 </head>
 
 <body>
-    <div class="flex-center position-ref full-height">
-        @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-            <a href="{{  url('/home') }}">Home</a>
-            @else
-            <a href="{{ route('login') }}">Login</a>
-
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}">Register</a>
-            @endif
-            @endauth
-        </div>
-        @endif
-
-        <div class="content">
-            <div class="title m-b-md">
-                <?php echo env('APP_NAME', 'Kode'); ?>
-            </div>
-
-            <div class="links">
-                <a href="{{  url('/login') }}">Login</a>
-                <a href="https://github.com/konnector-dev/kuotes/tree/flutter-dart-app" target="_blank">Kuotes (Flutter)</a>
-                <a href="https://github.com/konnector-dev/kloudify/tree/wooks" target="_blank">Wooks(Laravel)</a>
-                <a href="https://github.com/jdecode" target="_blank"><i class="fa fa-github"></i>/jdecode</a>
-                <a href="https://twitter.com/jdecode" target="_blank"><i class="fa fa-twitter"></i>/jdecode</a>
-                <br />
-                <a href="" onclick="return false;" style="cursor: auto;">&copy; <?php echo date('Y'); ?></a>
+    <div class="min-h-screen bg-gray-50 flex justify-center py-10 sm:px-6 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+            <img class="mx-auto h-12 w-auto" src="/images/kode.png" alt="Kode!" />
+            <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+                Kode!
+            </h2>
+            <div class="py-10 mx-auto flex justify-center align-content-center">
+                <span class="inline-flex shadow-sm">
+                  <a
+                      href="{{url('/oauth-github/auth-request')}}"
+                      type="button"
+                          class="
+                          inline-flex items-center px-6 py-3 border border-transparent text-base leading-6 font-medium
+                          text-white bg-red-600
+                          hover:bg-red-500
+                          focus:outline-none focus:border-red-700 focus:shadow-outline-red
+                          active:bg-red-700 transition ease-in-out duration-150"
+                      style="background-color: red;"
+                  >
+                      <i class="fa fa-github"></i>
+                     &nbsp; &nbsp; Sign in with GitHub
+                  </a>
+                </span>
             </div>
         </div>
     </div>
