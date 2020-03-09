@@ -2,3 +2,4 @@
 .env
 vendor/
 .history/
+node_modules
