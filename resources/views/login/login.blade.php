@@ -19,9 +19,9 @@
 <body>
 <div class="min-h-screen bg-black flex justify-center py-10 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
-        <img class="mx-auto h-12 w-auto" src="/images/kode.png" alt="Kode!" />
+        <img class="mx-auto h-12 w-auto" src="{{ url('/images/kode.png') }}" alt="{{env('APP_NAME')}}" />
         <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-600">
-            Kode!
+            {{env('APP_NAME')}}
         </h2>
         <div class="py-10 mx-auto flex justify-center align-content-center">
                 <span class="inline-flex shadow-sm">
