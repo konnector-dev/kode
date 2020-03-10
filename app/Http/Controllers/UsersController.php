@@ -29,6 +29,12 @@ class UsersController extends Controller
         return json_decode($_user, true);
     }
 
+    public function checkGithubOrgs(Request $request)
+    {
+        $_orgs_in_github = app('App\Http\Controllers\OauthGithubController')->getUserOrgs($request);
+        $this->_updateGitHubOrgsList($_orgs_in_github);
+    }
+
     public function dashboard(Request $request)
     {
         $_orgs = app('App\Http\Controllers\OauthGithubController')->getUserOrgs($request);
