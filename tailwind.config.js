@@ -1,6 +1,10 @@
 module.exports = {
   theme: {
-    extend: {},
+    extend: {
+        colors:{
+            "kodered": '#FF0000'
+        }
+    },
   },
   variants: {},
   plugins: [],
