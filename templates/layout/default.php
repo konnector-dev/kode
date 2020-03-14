@@ -31,18 +31,13 @@ use Cake\Routing\Router;
         </h2>
         <div class="py-10 mx-auto flex justify-center align-content-center">
                 <span class="inline-flex shadow-sm">
-                  <a
-                      href="<?php echo Router::url('/oauth-github/auth-request'); ?>"
-                      type="button"
-                      class="
-                          inline-flex items-center px-6 py-3 border border-kored text-base leading-6 font-medium
-                          text-gray-300 bg-red-600 bg-kored
-                          hover:border-gray-300"
-                  >
-                      <i class="fa fa-github"></i>
-                     &nbsp; &nbsp; Sign in with GitHub
-                  </a>
+                    <?= $this->fetch('content') ?>
                 </span>
+        </div>
+        <div class="text-gray-600 flex justify-center">
+            <div class="flex-1 text-center">&copy; <?php echo date('Y'); ?> <?=env('APP_NAME')?></div>
+            <div class="flex-1 text-center"><a href="<?php echo Router::url('/') ; ?>">Home</a></div>
+            <div class="flex-1 text-center"><a href="<?php echo Router::url('/login') ; ?>">Login</a></div>
         </div>
     </div>
 </div>

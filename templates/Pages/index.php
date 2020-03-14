@@ -1,2 +1,1 @@
-Hello there!
-Koreview is here!
+<?php
