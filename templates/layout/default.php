@@ -1,59 +1,51 @@
 <?php
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
- * @var \App\View\AppView $this
- */
+use Cake\Core\Configure;
+use Cake\Routing\Router;
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?php echo Configure::read('App.defaultLocale');?>">
+
 <head>
+    <meta charset="utf-8">
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
-    </title>
-    <?= $this->Html->meta('icon') ?>
 
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
+    <title><?php echo env('APP_NAME', 'Kode'); ?></title>
 
-    <?= $this->Html->css('milligram.min.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    <link rel="icon" type="image/png" href="/favicon.png" />
 
-    <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link href="<?php echo Router::url('/css/tw.css'); ?>" rel="stylesheet">
+    <link href="<?php echo Router::url('/fonts/font-awesome.min.css'); ?>" rel="stylesheet">
+
 </head>
+
 <body>
-    <nav class="top-nav">
-        <div class="top-nav-title">
-            <a href="/"><span>Cake</span>PHP</a>
+<div class="min-h-screen bg-white flex justify-center py-10 sm:px-6 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <img class="mx-auto h-24 w-auto" src="<?php echo Router::url('/img/koreview.png') ; ?>" alt="<?php echo env('APP_NAME'); ?>" />
+        <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-600">
+            <?php echo env('APP_NAME'); ?>
+        </h2>
+        <div class="py-10 mx-auto flex justify-center align-content-center">
+                <span class="inline-flex shadow-sm">
+                  <a
+                      href="<?php echo Router::url('/oauth-github/auth-request'); ?>"
+                      type="button"
+                      class="
+                          inline-flex items-center px-6 py-3 border border-kored text-base leading-6 font-medium
+                          text-gray-300 bg-red-600 bg-kored
+                          hover:border-gray-300"
+                  >
+                      <i class="fa fa-github"></i>
+                     &nbsp; &nbsp; Sign in with GitHub
+                  </a>
+                </span>
         </div>
-        <div class="top-nav-links">
-            <a target="_blank" href="https://book.cakephp.org/4/">Documentation</a>
-            <a target="_blank" href="https://api.cakephp.org/4/">API</a>
-        </div>
-    </nav>
-    <main class="main">
-        <div class="container">
-            <?= $this->Flash->render() ?>
-            <?= $this->fetch('content') ?>
-        </div>
-    </main>
-    <footer>
-    </footer>
+    </div>
+</div>
 </body>
+
 </html>

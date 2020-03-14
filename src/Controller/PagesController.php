@@ -72,4 +72,8 @@ class PagesController extends AppController
 
         return $this->render();
     }
+
+    public function index() {
+        return $this->render();
+    }
 }
