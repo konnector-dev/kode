@@ -11,6 +11,6 @@ use Cake\Routing\Router;
                           text-gray-300 bg-red-600 bg-kored
                           hover:border-gray-300"
 >
-    <i class="fa fa-github"></i>
+        <i class="text-4xl"><i class="fa fa-github"></i></i>
     &nbsp; &nbsp; Sign in with GitHub
 </a>
