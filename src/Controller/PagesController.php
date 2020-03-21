@@ -72,4 +72,11 @@ class PagesController extends AppController
 
         return $this->render();
     }
+
+    public function index() {
+    }
+
+    public function login() {
+    }
+
 }

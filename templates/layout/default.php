@@ -1,59 +1,75 @@
 <?php
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
- * @var \App\View\AppView $this
- */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+use Cake\Core\Configure;
+use Cake\Routing\Router;
+
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?php echo Configure::read('App.defaultLocale'); ?>">
+
 <head>
+    <meta charset="utf-8">
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
-    </title>
-    <?= $this->Html->meta('icon') ?>
 
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
+    <title><?php echo Configure::read('app_name'); ?></title>
 
-    <?= $this->Html->css('milligram.min.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    <link rel="icon" type="image/png" href="/favicon.png"/>
 
-    <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link href="<?php echo Router::url('/css/style.css'); ?>" rel="stylesheet">
+    <link href="<?php echo Router::url('/fonts/font-awesome.min.css'); ?>" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script defer src="<?php echo Router::url('/js/kode.js'); ?>"></script>
+
 </head>
+
 <body>
-    <nav class="top-nav">
-        <div class="top-nav-title">
-            <a href="/"><span>Cake</span>PHP</a>
+<div
+    id="themer"
+    class="min-h-screen bg-black flex justify-center py-10 sm:px-6 lg:px-8"
+    v-bind:class="{'bg-white': isLight}">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <a href="<?php echo Router::url('/'); ?>"><img class="mx-auto h-24 w-auto"
+                                                       src="<?php echo Router::url('/img/kode.png'); ?>"
+                                                       alt="<?php echo Configure::read('app_name'); ?>"ss/></a>
+        <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-600">
+            <?php echo Configure::read('app_name'); ?>
+        </h2>
+        <div class="py-10 mx-auto flex justify-center align-content-center">
+                <span class="inline-flex shadow-sm">
+                    <?= $this->fetch('content') ?>
+                </span>
         </div>
-        <div class="top-nav-links">
-            <a target="_blank" href="https://book.cakephp.org/4/">Documentation</a>
-            <a target="_blank" href="https://api.cakephp.org/4/">API</a>
+        <div class="text-gray-600 flex justify-center">
+            <div class="flex-1 text-center text-xl">
+                <a href="https://twitter.com/jdecode" alt="jdecode at Twitter" target="_blank">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a href="https://github.com/jdecode" alt="jdecode at GitHub"
+                                                          target="_blank">
+                    <i class="fa fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/jdecode" alt="jdecode at LinkedIn"
+                                                          target="_blank">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+                <a href="https://jdecode.dev" alt="jdecode at LinkedIn"
+                                                          target="_blank">
+                    <i class="fa fa-wordpress"></i>
+                </a>
+            </div>
+            <div class="flex-1 text-center"><a
+                    href="<?php echo Router::url('/login'); ?>">Sign in</a></div>
+            <div class="flex-1 text-center">
+                <button class="theme focus:outline-none" v-on:click="themeUpdate" title="Toggle Light/Dark mode">
+                    <i class="fa fa-moon-o"></i>/<i class="fa fa-sun-o"></i>
+                </button>
+            </div>
         </div>
-    </nav>
-    <main class="main">
-        <div class="container">
-            <?= $this->Flash->render() ?>
-            <?= $this->fetch('content') ?>
-        </div>
-    </main>
-    <footer>
-    </footer>
+    </div>
+</div>
 </body>
+
 </html>
