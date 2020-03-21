@@ -1,3 +1,2 @@
-FROM koreview:0.3
+FROM jdecode/kode:0.5
 
-RUN a2enmod rewrite
