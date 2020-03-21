@@ -9,3 +9,20 @@ services:
       - 8080:80
     volumes:
       - .:/var/www/html
+    links:
+      - pg
+    depends_on:
+      - pg
+    environment:
+      DATABASE_URL: postgres://postgres:docker@pg/postgres
+  pg:
+    image: postgres:latest
+    ports:
+    - 5432:5432
+    volumes:
+      - db_data:/var/lib/postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: docker
+volumes:
+  db_data: {}
