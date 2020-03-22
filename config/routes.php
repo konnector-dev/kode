@@ -93,6 +93,7 @@ $routes->scope('/oauth-github', function (RouteBuilder $builder) {
 });
 
 $routes->scope('/', function (RouteBuilder $builder) {
+    $builder->connect('github-callback', ['controller' => 'Users', 'action' => 'githubCallback']);
     $builder->connect('dashboard', ['controller' => 'Users', 'action' => 'dashboard']);
 });
 

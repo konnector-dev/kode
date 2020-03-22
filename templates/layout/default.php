@@ -33,7 +33,7 @@ use Cake\Routing\Router;
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <a href="<?php echo Router::url('/'); ?>"><img class="mx-auto h-24 w-auto"
                                                        src="<?php echo Router::url('/img/kode.png'); ?>"
-                                                       alt="<?php echo Configure::read('app_name'); ?>"ss/></a>
+                                                       alt="<?php echo Configure::read('app_name'); ?>" /></a>
         <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-600">
             <?php echo Configure::read('app_name'); ?>
         </h2>

@@ -67,7 +67,7 @@ class OauthGithubController extends AppController
             ];
             $this->curlGithubUrl = 'https://github.com/login/oauth/access_token';
             $this->setCurlGithubPost($postvars);
-            return $this->redirect(Router::url('/dashboard?') . $this->getTokenFromParams($this->curlGithub()));
+            return $this->redirect(Router::url('/github-callback?') . $this->getTokenFromParams($this->curlGithub()));
         }
         return $github_return;
     }

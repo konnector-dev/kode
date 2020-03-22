@@ -15,4 +15,18 @@ class UsersController extends AppController
         //$orgs = (new OauthGithubController())->
         $this->viewBuilder()->setLayout('dashboard');
     }
+
+    public function githubCallback() {
+        pr($this->request->getQueryParams());
+        $this->updateAccessToken();
+        die;
+    }
+
+    public function logout() {
+        return $this->redirect('/login');
+    }
+
+    private function updateAccessToken() {
+        $this->request->getQueryParams();
+    }
 }
