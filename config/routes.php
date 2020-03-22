@@ -87,6 +87,16 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->fallbacks();
 });
 
+$routes->scope('/oauth-github', function (RouteBuilder $builder) {
+    $builder->connect('/auth-request', ['controller' => 'OauthGithub', 'action' => 'login']);
+    $builder->connect('/auth', ['controller' => 'OauthGithub', 'action' => 'getAccessTokenFromCode']);
+});
+
+$routes->scope('/', function (RouteBuilder $builder) {
+    $builder->connect('dashboard', ['controller' => 'Users', 'action' => 'dashboard']);
+});
+
+
 /*
  * If you need a different set of middleware or none at all,
  * open new scope and define routes there.
