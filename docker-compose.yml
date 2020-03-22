@@ -15,6 +15,15 @@ services:
       - pg
     environment:
       DATABASE_URL: postgres://postgres:docker@pg/postgres
+      OAUTHAPP_GITHUB_CLIENT_ID: c84ea58cdbbd452632fb
+      OAUTHAPP_GITHUB_CLIENT_SECRET: 88b309426f720fc6da6d28842d844941b745daf6
+      OAUTHAPP_GITHUB_REDIRECT_URI: http://kode.konnector.local/oauth-github/auth
+      DEBUG: true
+      SECURITY_SALT: 49e558df8e733a6daedbe054a9ccd7add9d9a6efa8a96cf3248815c364b47391
+    networks:
+      testing_net:
+        ipv4_address: 172.28.1.1
+
   pg:
     image: postgres:latest
     ports:
@@ -24,5 +33,14 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: docker
+    networks:
+      testing_net:
+        ipv4_address: 172.28.1.2
 volumes:
   db_data: {}
+networks:
+  testing_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16

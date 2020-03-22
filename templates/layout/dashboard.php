@@ -28,8 +28,8 @@ use Cake\Routing\Router;
 <body>
 <div
     id="themer"
-    class="min-h-screen bg-gray-300 flex justify-center py-10 sm:px-6 lg:px-8"
-    v-bind:class="{'bg-gray-900': isDark}">
+    class="min-h-screen bg-black flex justify-center py-10 sm:px-6 lg:px-8"
+    v-bind:class="{'bg-white': isLight}">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <a href="<?php echo Router::url('/'); ?>"><img class="mx-auto h-24 w-auto"
                                                        src="<?php echo Router::url('/img/kode.png'); ?>"

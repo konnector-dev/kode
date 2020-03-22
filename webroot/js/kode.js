@@ -2,11 +2,11 @@
 new Vue({
     el: '#themer',
     data: {
-        isLight: false
+        isDark: false
     },
     methods: {
         themeUpdate: function() {
-            this.isLight = !this.isLight;
+            this.isDark = !this.isDark;
         }
     }
 });
