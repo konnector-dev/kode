@@ -11,6 +11,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $name
  * @property bool $status
+ * @property string $slug
  *
  * @property \App\Model\Entity\Login[] $logins
  * @property \App\Model\Entity\Token[] $tokens
@@ -29,7 +30,8 @@ class Source extends Entity
     protected $_accessible = [
         'name' => true,
         'status' => true,
-        'logins' => true,
-        'tokens' => true,
+        'slug' => true,
+        'logins' => false,
+        'tokens' => false,
     ];
 }

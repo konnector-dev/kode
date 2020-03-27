@@ -80,6 +80,10 @@ class LoginsTable extends Table
             ->requirePresence('ip_destination', 'create')
             ->notEmptyString('ip_destination');
 
+        $validator
+            ->uuid('hash')
+            ->allowEmptyString('hash');
+
         return $validator;
     }
 

@@ -21,6 +21,7 @@ use Cake\Controller\Controller;
 use Cake\Event\EventManagerInterface;
 use Cake\Http\Response;
 use Cake\Http\ServerRequest;
+use Cake\ORM\TableRegistry;
 use Exception;
 
 /**
@@ -34,6 +35,7 @@ use Exception;
 class AppController extends Controller
 {
     public $request;
+    protected array $sources = [];
 
     public function __construct(?ServerRequest $request = null, ?Response $response = null, ?string $name = null, ?EventManagerInterface $eventManager = null, ?ComponentRegistry $components = null)
     {
@@ -63,5 +65,23 @@ class AppController extends Controller
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
          */
         //$this->loadComponent('FormProtection');
+        $this->loadSources();
+    }
+
+    private function loadSources()
+    {
+        $this->sources = TableRegistry::getTableLocator()
+            ->get('Sources')
+            ->find('list', [
+                'keyField' => 'slug',
+                'valueField' => 'id'
+            ])
+            ->where([
+                'status' => true
+            ])
+            ->cache(function ($q) {
+                return 'sources-'.md5(serialize($q->clause('where')));
+            })
+            ->toArray();
     }
 }

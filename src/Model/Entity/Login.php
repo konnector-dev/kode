@@ -14,6 +14,7 @@ use Cake\ORM\Entity;
  * @property string $ip_source
  * @property string $ip_destination
  * @property \Cake\I18n\FrozenTime $created
+ * @property string|null $hash
  *
  * @property \App\Model\Entity\Source $source
  * @property \App\Model\Entity\Token $token
@@ -35,6 +36,7 @@ class Login extends Entity
         'ip_source' => true,
         'ip_destination' => true,
         'created' => true,
+        'hash' => true,
         'source' => true,
         'token' => true,
     ];
