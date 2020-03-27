@@ -18,10 +18,12 @@ class SourceSeeder extends AbstractSeed
         $data = [
             [
                 'name'    => 'GitHub',
+                'slug'    => 'github',
                 'status'    => true
             ],
             [
-                'name'    => 'BitBucker',
+                'name'    => 'BitBucket',
+                'slug'    => 'bitbucket',
                 'status'    => false
             ]
         ];
