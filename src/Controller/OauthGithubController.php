@@ -34,7 +34,8 @@ class OauthGithubController extends AppController
         $this->http = new Client();
     }
 
-    public function getGithubUrl() {
+    public function getGithubUrl()
+    {
         $url = 'https://github.com/login/oauth/authorize?'
             . 'client_id=' . Configure::read('Oauth.GitHub.id')
             . '&redirect_uri=' . Configure::read('Oauth.GitHub.uri')
@@ -43,7 +44,8 @@ class OauthGithubController extends AppController
         return $this->redirect($url);
     }
 
-    private function getScopes() {
+    private function getScopes()
+    {
         $scopes = [
             'repo:status',
             'repo_deployment',
@@ -55,7 +57,8 @@ class OauthGithubController extends AppController
         return implode(' ', $scopes);
     }
 
-    public function getAccessTokenFromCode() {
+    public function getAccessTokenFromCode()
+    {
         $github_return = $this->request->getQueryParams();
         if (isset($github_return['code']) && strlen(trim($github_return['code']))) {
             $postvars = [
@@ -72,7 +75,8 @@ class OauthGithubController extends AppController
         return $github_return;
     }
 
-    private function getTokenFromParams($params) {
+    private function getTokenFromParams($params)
+    {
         $_params = explode('&', $params);
         foreach ($_params as $_param) {
             if (stristr($_param, 'access_token=')) {
@@ -82,7 +86,8 @@ class OauthGithubController extends AppController
         return '';
     }
 
-    private function curlGithub() {
+    private function curlGithub()
+    {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->curlGithubUrl);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -101,11 +106,13 @@ class OauthGithubController extends AppController
         return $output;
     }
 
-    private function setCurlGithubHeaders(String $header) {
+    private function setCurlGithubHeaders(String $header)
+    {
         $this->curlGithubHeaders[] = $header;
     }
 
-    private function setCurlGithubPost(array $postvars) {
+    private function setCurlGithubPost(array $postvars)
+    {
         if (!count($this->curlGithubPostdata)) {
             $this->curlGithubPostdata = $postvars;
             return;
@@ -116,15 +123,16 @@ class OauthGithubController extends AppController
     /**
      * @return array
      */
-    private function getCurlGithubHeaders() {
+    private function getCurlGithubHeaders()
+    {
         if (strlen(trim($this->curlGithubToken))) {
             $this->setCurlGithubHeaders('Authorization: Bearer ' . $this->curlGithubToken);
         }
         return $this->curlGithubHeaders;
     }
 
-    public function login() {
+    public function login()
+    {
         return $this->redirect($this->getGithubUrl());
     }
-
 }
