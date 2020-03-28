@@ -1,12 +1,22 @@
 
 new Vue({
-    el: '#themer',
+    el: '.darkLight',
     data: {
-        isDark: false
+        isDark: false,
+        showUserOptions: false
+    },
+    mounted() {
+        if (localStorage.isDark) {
+            this.isDark = JSON.parse(localStorage.isDark);
+        }
     },
     methods: {
-        themeUpdate: function() {
+        darkLightModeUpdate: function() {
             this.isDark = !this.isDark;
+            localStorage.isDark = this.isDark;
+        },
+        toggleUserOptions: function () {
+            this.showUserOptions = !this.showUserOptions;
         }
-    }
+    },
 });

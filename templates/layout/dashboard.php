@@ -27,9 +27,11 @@ use Cake\Routing\Router;
 </head>
 
 <body>
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
 
-<div class="h-screen flex overflow-hidden bg-gray-100" x-data="{ sidebarOpen: false }" @keydown.window.escape="sidebarOpen = false">
+<div
+    class="darkLight h-screen flex overflow-hidden bg-gray-100" x-data="{ sidebarOpen: false }" @keydown.window.escape="sidebarOpen = false">
+
+<!--    <input id="tokenHolder" type="hidden" v-model="token" value="--><?//=$_GET['token']?><!--">-->
     <?php
     echo $this->element('sidebar/mobile');
     echo $this->element('sidebar/desktop');

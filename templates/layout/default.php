@@ -27,8 +27,7 @@ use Cake\Routing\Router;
 
 <body>
 <div
-    id="themer"
-    class="min-h-screen bg-gray-300 flex justify-center py-10 sm:px-6 lg:px-8"
+    class="darkLight min-h-screen bg-gray-300 flex justify-center py-10 sm:px-6 lg:px-8"
     v-bind:class="{'bg-gray-900': isDark}">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <a href="<?php echo Router::url('/'); ?>"><img class="mx-auto h-24 w-auto"
@@ -63,8 +62,13 @@ use Cake\Routing\Router;
             <div class="flex-1 text-center"><a
                     href="<?php echo Router::url('/login'); ?>">Sign in</a></div>
             <div class="flex-1 text-center">
-                <button class="theme focus:outline-none" v-on:click="themeUpdate" title="Toggle Light/Dark mode">
-                    <i class="fa fa-moon-o"></i>/<i class="fa fa-sun-o"></i>
+                <button class="focus:outline-none" v-on:click="darkLightModeUpdate">
+                    <span :class="{'hidden': isDark}" title="Dark mode" class="text-kored">
+                        <i class="fa fa-moon-o"></i>
+                    </span>
+                    <span :class="{'hidden': !isDark}" title="Light mode" class="text-kored">
+                        <i class="fa fa-sun-o"></i>
+                    </span>
                 </button>
             </div>
         </div>

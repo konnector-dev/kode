@@ -6,7 +6,9 @@ use Cake\Routing\Router;
 <!-- Static sidebar for desktop -->
 <div class="hidden md:flex md:flex-shrink-0">
     <div class="flex flex-col w-64">
-        <div class="flex items-center h-16 flex-shrink-0 px-4 bg-gray-900">
+        <div
+            class="flex items-center h-16 flex-shrink-0 px-4 bg-gray-300"
+             v-bind:class="{'bg-gray-900': isDark}">
             <img class="h-8 w-auto"
                  src="<?php echo Router::url('/img/kode.png'); ?>"
                  alt="<?php echo Configure::read('app_name'); ?>" />
