@@ -18,8 +18,8 @@ use Cake\Routing\Router;
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <link href="<?php echo Router::url('/css/style.css'); ?>" rel="stylesheet">
     <link href="<?php echo Router::url('/fonts/font-awesome.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo Router::url('/css/style.css'); ?>" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script defer src="<?php echo Router::url('/js/kode.js'); ?>"></script>
     <script defer src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js"></script>
@@ -29,13 +29,14 @@ use Cake\Routing\Router;
 <body>
 
 <div
-    class="darkLight h-screen flex overflow-hidden bg-gray-100" x-data="{ sidebarOpen: false }" @keydown.window.escape="sidebarOpen = false">
+    class="darkLight h-screen flex overflow-hidden"
+    x-data="{ sidebarOpen: false }"
+    @keydown.window.escape="sidebarOpen = false">
 
 <!--    <input id="tokenHolder" type="hidden" v-model="token" value="--><?//=$_GET['token']?><!--">-->
     <?php
-    echo $this->element('sidebar/mobile');
-    echo $this->element('sidebar/desktop');
-    echo $this->element('sidebar/top');
+    echo $this->element('sidebar');
+    echo $this->element('main');
     ?>
 </div>
 </body>
