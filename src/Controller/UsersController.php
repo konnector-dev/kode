@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Model\Entity\Login;
+use App\Model\Entity\GithubUser;
 use App\Model\Entity\Token;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Text;
@@ -15,21 +15,22 @@ use Cake\Utility\Text;
 class UsersController extends AppController
 {
     private Token $token;
-    private Login $login;
+    private GithubUser $githubUser;
 
     public function dashboard()
     {
-        //$orgs = (new OauthGithubController())->
+        $request = $this->request->getQueryParams();
+        $this->set('token', $request['token']);
         $this->viewBuilder()->setLayout('dashboard');
     }
 
     public function githubCallback()
     {
-        if (!$this->isTokenActive()) {
-            $this->updateAccessToken();
+        if (!$this->isGithubTokenActive()) {
+            $this->updateGithubAccessToken();
         }
-        if($this->saveLogin()) {
-            $this->redirect('/dashboard?token='.$this->login->hash);
+        if($this->githubUserInfo() && $this->updateGithubUser()) {
+            $this->redirect('/dashboard?token='.$this->token->hash);
         }
         $this->redirect('/login');
     }
@@ -39,7 +40,7 @@ class UsersController extends AppController
         return $this->redirect('/login');
     }
 
-    private function isTokenActive()
+    private function isGithubTokenActive()
     {
         $token = TableRegistry::getTableLocator()
             ->get('Tokens')
@@ -56,12 +57,13 @@ class UsersController extends AppController
         return false;
     }
 
-    private function updateAccessToken()
+    private function updateGithubAccessToken()
     {
         $tokenTable = TableRegistry::getTableLocator()->get('Tokens');
         $this->token = $tokenTable->newEmptyEntity();
 
         $this->token->source_id = $this->sources['github'];
+        $this->token->user_id = 0;
         $this->token->access_token = $this->request->getQueryParams()['access_token'];
         $this->token->last_active = date('Y-m-d H:i:s');
         $this->token->created = date('Y-m-d H:i:s');
@@ -72,18 +74,43 @@ class UsersController extends AppController
         return false;
     }
 
-    private function saveLogin() {
-        $loginTable = TableRegistry::getTableLocator()->get('Logins');
-        $this->login = $loginTable->newEmptyEntity();
+    private function githubUserInfo()
+    {
 
-        $this->login->source_id = $this->sources['github'];
-        $this->login->token_id = $this->token->id;
-        $this->login->hash = Text::uuid();
-        $this->login->ip_source = $_SERVER['REMOTE_ADDR'];
-        $this->login->ip_destination = $_SERVER['SERVER_ADDR'];
-        $this->login->created = date('Y-m-d H:i:s');
+        $userInfo = json_decode((new OauthGithubController())->getUserInfo($this->token->access_token));
 
-        if($loginTable->save($this->login)) {
+        $githubUserTable = TableRegistry::getTableLocator()->get('GithubUsers');
+        $githubUser = $githubUserTable->newEmptyEntity();
+
+        $githubUser->node = $userInfo->node_id;
+        if($this->githubUser = $githubUserTable->findOrCreate(
+            ['node' => $githubUser->node],
+            function ($entity) use ($userInfo) {
+                // Create, only if node not found
+                $entity->name = $userInfo->name;
+                $entity->login = $userInfo->login;
+                $entity->avatar = $userInfo->avatar_url;
+                $entity->type = ($userInfo->type === 'User' ? 1 : 2);
+                $entity->site_admin = $userInfo->site_admin;
+                $entity->company = $userInfo->company;
+                $entity->blog = $userInfo->blog;
+                $entity->location = $userInfo->location;
+                $entity->since = date('Y-m-d H:i:s', strtotime($userInfo->created_at));
+                $entity->active = true;
+                $entity->gitid = $userInfo->id;
+                $entity->created = date('Y-m-d H:i:s');
+            }
+        )) {
+            return true;
+        }
+        return false;
+    }
+
+    private function updateGithubUser() {
+        $tokensTable = TableRegistry::getTableLocator()->get('Tokens');
+        $this->token->github_user_id = $this->githubUser->id;
+        $this->token->hash = Text::uuid();
+        if($tokensTable->save($this->token)) {
             return true;
         }
         return false;
