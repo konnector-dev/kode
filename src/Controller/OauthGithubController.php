@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\Entity\Token;
 use Cake\Core\Configure;
 use Cake\Http\ServerRequest;
 use Cake\Http\Client;
@@ -14,23 +15,24 @@ use Cake\Routing\Router;
  */
 class OauthGithubController extends AppController
 {
-    private $hashBabyHash = 'whatislovebabydonthurtme';
+    private string $hashBabyHash = 'whatislovebabydonthurtme';
 
-    private $curlGithubUrl = '';
+    private string $curlGithubUrl = '';
 
-    private $curlGithubToken = '';
+    private string $curlGithubToken = '';
 
-    private $curlGithubHeaders = [];
+    private array $curlGithubHeaders = [];
 
-    private $curlGithubPostdata = [];
+    private array $curlGithubPostdata = [];
 
-    private $isPostJson = false;
+    private bool $isPostJson = false;
 
-    private $http;
+    private Client $http;
 
     public function initialize(): void
     {
         parent::initialize();
+        $this->setCurlGithubHeaders('User-Agent: jdecode');
         $this->http = new Client();
     }
 
@@ -135,4 +137,11 @@ class OauthGithubController extends AppController
     {
         return $this->redirect($this->getGithubUrl());
     }
+
+    public function getUserInfo(string $access_token) {
+        $this->curlGithubToken = $access_token;
+        $this->curlGithubUrl = 'https://api.github.com/user';
+        return $this->curlGithub();
+    }
+
 }
