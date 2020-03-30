@@ -27,13 +27,15 @@ use Cake\Routing\Router;
 </head>
 
 <body>
+<script>
+    window.token = '<?=$token?>';
+</script>
 
 <div
     class="darkLight h-screen flex overflow-hidden"
     x-data="{ sidebarOpen: false }"
     @keydown.window.escape="sidebarOpen = false">
 
-<!--    <input id="tokenHolder" type="hidden" v-model="token" value="--><?//=$_GET['token']?><!--">-->
     <?php
     echo $this->element('sidebar');
     echo $this->element('main');
