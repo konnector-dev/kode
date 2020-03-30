@@ -12,6 +12,7 @@ use Cake\Validation\Validator;
  * Tokens Model
  *
  * @property \App\Model\Table\SourcesTable&\Cake\ORM\Association\BelongsTo $Sources
+ * @property \App\Model\Table\GithubUsersTable&\Cake\ORM\Association\BelongsTo $GithubUsers
  * @property \App\Model\Table\LoginsTable&\Cake\ORM\Association\HasMany $Logins
  *
  * @method \App\Model\Entity\Token newEmptyEntity()
@@ -52,6 +53,9 @@ class TokensTable extends Table
             'foreignKey' => 'source_id',
             'joinType' => 'INNER',
         ]);
+        $this->belongsTo('GithubUsers', [
+            'foreignKey' => 'github_user_id',
+        ]);
         $this->hasMany('Logins', [
             'foreignKey' => 'token_id',
         ]);
@@ -83,6 +87,10 @@ class TokensTable extends Table
             ->dateTime('last_active')
             ->allowEmptyDateTime('last_active');
 
+        $validator
+            ->uuid('hash')
+            ->allowEmptyString('hash');
+
         return $validator;
     }
 
@@ -96,6 +104,7 @@ class TokensTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['source_id'], 'Sources'));
+        $rules->add($rules->existsIn(['github_user_id'], 'GithubUsers'));
 
         return $rules;
     }

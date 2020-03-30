@@ -14,8 +14,11 @@ use Cake\ORM\Entity;
  * @property bool $status
  * @property \Cake\I18n\FrozenTime|null $last_active
  * @property \Cake\I18n\FrozenTime $created
+ * @property int|null $github_user_id
+ * @property string|null $hash
  *
  * @property \App\Model\Entity\Source $source
+ * @property \App\Model\Entity\GithubUser $github_user
  * @property \App\Model\Entity\Login[] $logins
  */
 class Token extends Entity
@@ -35,7 +38,10 @@ class Token extends Entity
         'status' => true,
         'last_active' => true,
         'created' => true,
+        'github_user_id' => true,
+        'hash' => true,
         'source' => true,
+        'github_user' => true,
         'logins' => true,
     ];
 }
