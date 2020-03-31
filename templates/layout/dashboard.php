@@ -21,6 +21,7 @@ use Cake\Routing\Router;
     <link href="<?php echo Router::url('/fonts/font-awesome.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo Router::url('/css/style.css'); ?>" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"></script>
     <script defer src="<?php echo Router::url('/js/kode.js'); ?>"></script>
     <script defer src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js"></script>
 
