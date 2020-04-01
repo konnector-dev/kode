@@ -71,6 +71,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
      * ...and connect the rest of 'Pages' controller's URLs.
      */
     $builder->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+    $builder->connect('/app/*', ['controller' => 'Users', 'action' => 'frontend']);
 
     /*
      * Connect catchall routes for all controllers.
