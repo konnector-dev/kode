@@ -39,7 +39,7 @@ use Cake\Routing\Router;
                     >
                         <i class="fa fa-home text-2xl"></i>
                     </span>
-                    Dashboard
+                    <router-link to="dashboard">Dashboard</router-link>
                 </a>
                 <a
                     href="#"
@@ -75,7 +75,7 @@ use Cake\Routing\Router;
                                 'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !isDark}">
                         <i class="fa fa-folder text-2xl"></i>
                     </span>
-                    Projects
+                    <router-link to="projects">Projects</router-link>
                 </a>
             </nav>
         </div>
