@@ -7,8 +7,11 @@ export default {
     routes: [
         {
             path: '/',
-            component: Dashboard,
-            alias: ['/', '/dashboard']
+            component: Dashboard
+        },
+        {
+            path: '/dashboard',
+            component: Dashboard
         },
         {
             path: '/projects',
