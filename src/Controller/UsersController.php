@@ -24,6 +24,11 @@ class UsersController extends AppController
         $this->viewBuilder()->setLayout('dashboard');
     }
 
+    public function frontend()
+    {
+        $this->viewBuilder()->setLayout('ajax');
+    }
+
     public function githubCallback()
     {
         if (!$this->isGithubTokenActive()) {
