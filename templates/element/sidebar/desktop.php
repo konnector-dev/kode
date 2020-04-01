@@ -17,7 +17,8 @@ use Cake\Routing\Router;
             <!-- Sidebar component, swap this element with another sidebar if you like -->
             <nav class="flex-1 px-2 py-4 bg-gray-300"
                  :class="{'bg-gray-800': isDark}">
-                <a href="#"
+                <router-link to="dashboard">
+                <a
                     class="
                         group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md
                         transition ease-in-out duration-150"
@@ -39,8 +40,9 @@ use Cake\Routing\Router;
                     >
                         <i class="fa fa-home text-2xl"></i>
                     </span>
-                    <router-link to="dashboard">Dashboard</router-link>
+                    Dashboard
                 </a>
+                </router-link>
                 <a
                     href="#"
                     class="
@@ -59,8 +61,8 @@ use Cake\Routing\Router;
                     </span>
                     Teams
                 </a>
+                <router-link to="projects">
                 <a
-                    href="#"
                     class="
                         mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md
                         focus:outline-none
@@ -75,8 +77,9 @@ use Cake\Routing\Router;
                                 'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !isDark}">
                         <i class="fa fa-folder text-2xl"></i>
                     </span>
-                    <router-link to="projects">Projects</router-link>
+                    Projects
                 </a>
+                </router-link>
             </nav>
         </div>
     </div>
