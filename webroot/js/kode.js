@@ -1,4 +1,7 @@
-
+/**
+ * This file is loaded outside the core application.
+ * Uses Vue from CDN
+ */
 new Vue({
     el: '.darkLight',
     data: {
