@@ -11,7 +11,7 @@ export default {
         },
         {
             path: '/dashboard',
-            redirect: '/'
+            component: Dashboard
         },
         {
             path: '/projects',

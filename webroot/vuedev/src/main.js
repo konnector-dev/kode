@@ -14,14 +14,27 @@ new Vue({
     el: '.darkLight',
     data: {
         isDark: false,
-        token: ''
+        token: '',
+        isMobileMenuOpen: false
     },
     created () {
-        this.token = this.$route.query.token;
-    },
-    mounted() {
         if (localStorage.isDark) {
             this.isDark = JSON.parse(localStorage.isDark);
+        }
+    },
+    mounted ()
+    {
+        if(typeof this.$route.query.token === 'undefined') {
+            if (localStorage.token) {
+                this.token = localStorage.token;
+            }
+        } else {
+            this.token = this.$route.query.token;
+            localStorage.token = this.token;
+            this.$router.replace('dashboard').then();
+        }
+        if(this.token === '') {
+            window.location.href = '/login';
         }
     },
     methods: {
