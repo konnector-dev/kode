@@ -35,13 +35,14 @@ class UsersController extends AppController
             $this->updateGithubAccessToken();
         }
         if($this->githubUserInfo() && $this->updateGithubUser()) {
-            $this->redirect('/dashboard?token='.$this->token->hash);
+            $this->redirect('/app/dashboard?token='.$this->token->hash);
         }
         $this->redirect('/login');
     }
 
     public function logout()
     {
+
         return $this->redirect('/login');
     }
 
