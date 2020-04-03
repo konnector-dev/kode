@@ -37,17 +37,28 @@
             this.open = false;
             this.isUserImage = false;
             this.userImage = '/img/jdecode.png';
+            this.user = {};
+            window.axios.get('/api/user-info/' + localStorage.token)
+                .then(response => {
+                    this.user = response.data;
+                    this.updateUser();
+                });
         },
         methods: {
             toggleOptions: function () {
                 this.open = !this.open;
+            },
+            updateUser: function () {
+                this.isUserImage = true;
+                this.userImage = this.user.avatar;
             }
         },
         data() {
             return {
                 open: this.open,
                 isUserImage: this.isUserImage,
-                userImage: this.userImage
+                userImage: this.userImage,
+                user: this.user
             }
         }
     };
