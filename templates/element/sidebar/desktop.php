@@ -17,68 +17,60 @@ use Cake\Routing\Router;
             <!-- Sidebar component, swap this element with another sidebar if you like -->
             <nav class="flex-1 px-2 py-4 bg-gray-300"
                  :class="{'bg-gray-800': isDark}">
-                <router-link to="dashboard">
-                <a
-                    class="
-                        group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md
-                        transition ease-in-out duration-150"
-                    :class="{
-                        'text-gray-400 bg-gray-900 focus:bg-gray-900 hover:bg-gray-900': isDark,
-                        'text-gray-900 bg-gray-400 focus:bg-gray-400 hover:bg-gray-400': !isDark
+                <router-link to="dashboard"
+                             class="
+                        group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md"
+                             :class="{
+                        'text-gray-400 focus:bg-gray-900 hover:bg-gray-900': isDark,
+                        'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !isDark
                     }"
                 >
-                    <span
-                        class="
-                            mr-3 h-6 w-6
-                            group-hover:text-gray-300
-                            group-focus:text-gray-300
-                            transition ease-in-out duration-150"
-                        :class="{
-                            'text-gray-400 focus:bg-gray-900 hover:bg-gray-900': isDark,
-                            'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !isDark
-                        }"
-                    >
+                    <span class="mr-3 h-6 w-6">
                         <i class="fa fa-home text-2xl"></i>
                     </span>
                     Dashboard
-                </a>
                 </router-link>
-                <a
-                    href="#"
-                    class="
+                <router-link to="projects"
+                             class="
                         mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md
-                        focus:outline-none
-                        transition ease-in-out duration-150"
-                    :class="{
+                        focus:outline-none"
+                             :class="{
                         'text-gray-400 focus:bg-gray-900 hover:bg-gray-900': isDark,
                         'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !isDark
-                    }">
-                    <span class="mr-3 h-6 w-6 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
-                         :class="{
-                                'text-gray-400 focus:bg-gray-900 hover:bg-gray-900': isDark,
-                                'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !isDark}">
-                        <i class="fa fa-users text-2xl"></i>
-                    </span>
-                    Teams
-                </a>
-                <router-link to="projects">
-                <a
-                    class="
-                        mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md
-                        focus:outline-none
-                        transition ease-in-out duration-150"
-                    :class="{
-                        'text-gray-400 focus:bg-gray-900 hover:bg-gray-900': isDark,
-                        'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !isDark
-                    }">
-                    <span class="mr-3 h-6 w-6 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
-                         :class="{
-                                'text-gray-400 focus:bg-gray-900 hover:bg-gray-900': isDark,
-                                'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !isDark}">
+                    }"
+                >
+                    <span class="mr-3 h-6 w-6">
                         <i class="fa fa-folder text-2xl"></i>
                     </span>
                     Projects
-                </a>
+                </router-link>
+                <router-link to="teams"
+                             class="
+                        mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md
+                        focus:outline-none"
+                             :class="{
+                        'text-gray-400 focus:bg-gray-900 hover:bg-gray-900': isDark,
+                        'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !isDark
+                    }"
+                >
+                    <span class="mr-3 h-6 w-6">
+                        <i class="fa fa-users text-2xl"></i>
+                    </span>
+                    Teams
+                </router-link>
+                <router-link to="help"
+                             class="
+                        mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md
+                        focus:outline-none"
+                             :class="{
+                        'text-gray-400 focus:bg-gray-900 hover:bg-gray-900': isDark,
+                        'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !isDark
+                    }"
+                >
+                    <span class="mr-3 h-6 w-6">
+                        <i class="fa fa-question text-2xl"></i>
+                    </span>
+                    Help
                 </router-link>
             </nav>
         </div>

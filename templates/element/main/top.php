@@ -1,8 +1,10 @@
 <div class="relative z-10 flex-shrink-0 flex h-16"
      :class="{'bg-gray-800': isDark, 'bg-gray-300': !isDark}">
     <button
+        @click="isMobileMenuOpen=true"
         class="
-            px-4 border-r border-gray-200 text-gray-500
+            mobileSidebarOpener
+            px-4 text-gray-500
             focus:outline-none focus:bg-gray-100 focus:text-gray-600 md:hidden">
         <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
@@ -58,7 +60,7 @@
                         p-1 mx-1 text-gray-400 rounded-full w-10 text-xl
                         hover:bg-gray-100 hover:text-gray-500
                         focus:outline-none focus:shadow-outline"
-                v-on:click="darkLightModeUpdate">
+                v-on:click="modeUpdate">
                     <span :class="{'hidden': isDark}" title="Dark mode" class="text-kored">
                         <i class="fa fa-moon-o"></i>
                     </span>

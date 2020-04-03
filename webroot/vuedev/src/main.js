@@ -18,29 +18,40 @@ new Vue({
         isMobileMenuOpen: false
     },
     created () {
+
         if (localStorage.isDark) {
             this.isDark = JSON.parse(localStorage.isDark);
         }
+        this.updateLinkActiveClass();
     },
     mounted ()
     {
-        if(typeof this.$route.query.token === 'undefined') {
-            if (localStorage.token) {
-                this.token = localStorage.token;
-            }
-        } else {
-            this.token = this.$route.query.token;
-            localStorage.token = this.token;
-            this.$router.replace('dashboard').then();
-        }
-        if(this.token === '') {
-            window.location.href = '/login';
-        }
+        this.checkToken();
+    },
+    updated() {
+        this.updateLinkActiveClass();
     },
     methods: {
-        darkLightModeUpdate: function() {
-            this.isDark = !this.isDark;
-            localStorage.isDark = this.isDark;
+        checkToken: function() {
+            if(typeof this.$route.query.token === 'undefined') {
+                if (localStorage.token) {
+                    this.token = localStorage.token;
+                }
+            } else {
+                this.token = this.$route.query.token;
+                localStorage.token = this.token;
+                this.$router.replace('dashboard').then();
+            }
+            if(this.token === '') {
+                window.location.href = '/login';
+            }
+        },
+        modeUpdate: function() {
+            localStorage.isDark = this.isDark = !this.isDark;
+            this.updateLinkActiveClass();
+        },
+        updateLinkActiveClass: function () {
+            routes.linkActiveClass = (this.isDark ? 'bg-gray-900' : 'bg-gray-400');
         }
     },
     components:{
