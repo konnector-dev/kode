@@ -13,7 +13,6 @@ use Cake\Routing\Router;
              :class="{'bg-gray-800': isDark}"
         >
             <div class="absolute top-0 right-0 -mr-14 p-1"
-                 :class="{'bg-gray-800': isDark}"
             >
                 <button
                     @click="isMobileMenuOpen = false"
@@ -23,9 +22,7 @@ use Cake\Routing\Router;
                     </span>
                 </button>
             </div>
-            <div class="flex-shrink-0 flex items-center px-4"
-                 :class="{'bg-gray-800': isDark}"
-            >
+            <div class="flex-shrink-0 flex items-center px-4">
                 <img class="h-8 w-auto"
                      src="<?php echo Router::url('/img/kode.png'); ?>"
                      alt="<?php echo Configure::read('app_name'); ?>" />
