@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 
 import routes from './routes';
 
-import UserSettings from '@/components/UserSettings/UserSettings'
+import UserSettings from '@/components/UserSettings'
 
 Vue.use(VueRouter);
 

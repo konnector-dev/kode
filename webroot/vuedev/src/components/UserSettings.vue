@@ -1,9 +1,21 @@
 <template>
     <div class="UserSettings">
-        <div class="ml-3 relative">
+        <div class="ml-1 relative">
             <div>
-                <button v-on:click="toggleOptions" class="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:shadow-outline">
-                    <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+                <button
+                    v-on:click="toggleOptions"
+                    class="
+                    p-1 text-gray-500 rounded-full w-10 text-xl
+                    hover:bg-gray-100 hover:text-gray-700
+                    focus:outline-none focus:shadow-outline focus:text-gray-500">
+                    <span :class="{ hidden: isUserImage }">
+                        <i class="fa fa-user"></i>
+                    </span>
+                    <span :class="{ hidden: !isUserImage }">
+                        <img class="rounded-full"
+                             :src="userImage"
+                             alt="" />
+                    </span>
                 </button>
             </div>
             <div
@@ -22,7 +34,9 @@
 <script>
     export default {
         created () {
-            this.open = false
+            this.open = false;
+            this.isUserImage = false;
+            this.userImage = '/img/jdecode.png';
         },
         methods: {
             toggleOptions: function () {
@@ -31,7 +45,9 @@
         },
         data() {
             return {
-                open: this.open
+                open: this.open,
+                isUserImage: this.isUserImage,
+                userImage: this.userImage
             }
         }
     };
