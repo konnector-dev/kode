@@ -42,7 +42,6 @@ class UsersController extends AppController
 
     public function logout()
     {
-
         return $this->redirect('/login');
     }
 
@@ -82,7 +81,6 @@ class UsersController extends AppController
 
     private function githubUserInfo()
     {
-
         $userInfo = json_decode((new OauthGithubController())->getUserInfo($this->token->access_token));
 
         $githubUserTable = TableRegistry::getTableLocator()->get('GithubUsers');
@@ -120,5 +118,25 @@ class UsersController extends AppController
             return true;
         }
         return false;
+    }
+
+    public function info(string $token)
+    {
+        $tokenUser = TableRegistry::getTableLocator()
+            ->get('Tokens')
+            ->find()
+            ->contain(['GithubUsers'])
+            ->where([
+                'hash' => $token,
+                'status' => true
+            ])
+            ->first();
+        $user = [];
+        $user['login'] = $tokenUser->github_user->login;
+        $user['name'] = $tokenUser->github_user->name;
+        $user['avatar'] = $tokenUser->github_user->avatar;
+        $this->viewBuilder()->setLayout('ajax');
+        echo json_encode($user);
+        die;
     }
 }
