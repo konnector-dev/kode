@@ -94,6 +94,11 @@ $routes->scope('/oauth-github', function (RouteBuilder $builder) {
     $builder->connect('/auth', ['controller' => 'OauthGithub', 'action' => 'getAccessTokenFromCode']);
 });
 
+$routes->scope('/api', function (RouteBuilder $builder) {
+    // No $builder->applyMiddleware() here.
+    $builder->connect('/user-info/*', ['controller' => 'Users', 'action' => 'info']);
+});
+
 $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('github-callback', ['controller' => 'Users', 'action' => 'githubCallback']);
     $builder->connect('dashboard', ['controller' => 'Users', 'action' => 'dashboard']);
