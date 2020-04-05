@@ -28,9 +28,6 @@ use Cake\Routing\Router;
 </head>
 
 <body>
-<script>
-    window.token = '<?=$token?>';
-</script>
 
 <div
     class="darkLight h-screen flex overflow-hidden"
