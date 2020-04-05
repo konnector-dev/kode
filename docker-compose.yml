@@ -20,6 +20,9 @@ services:
       OAUTHAPP_GITHUB_REDIRECT_URI: http://kode.konnector.local/oauth-github/auth
       DEBUG: 'true'
       SECURITY_SALT: 49e558df8e733a6daedbe054a9ccd7add9d9a6efa8a96cf3248815c364b47391
+      OAUTHAPP_GOOGLE_CLIENT_ID: c84ea58cdbbd452632fb
+      OAUTHAPP_GOOGLE_CLIENT_SECRET: 88b309426f720fc6da6d28842d844941b745daf6
+      OAUTHAPP_GOOGLE_REDIRECT_URI: http://kode.konnector.local/oauth-github/auth
     networks:
       testing_net:
         ipv4_address: 172.28.1.1
