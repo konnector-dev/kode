@@ -21,6 +21,10 @@ use Cake\Routing\Router;
     <link href="<?php echo Router::url('/fonts/font-awesome.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo Router::url('/vuedev/tailwind-style.css'); ?>" rel="stylesheet">
 
+    <script>
+        window.app_url = '<?php echo Router::url('/', true)?>';
+    </script>
+
 </head>
 
 <body>
