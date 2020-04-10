@@ -23,9 +23,12 @@ Please find installation links using the power of Google ;)
     ```
     docker-compose down
     ```
-1. Now run migrations within the container
+1. Run migrations within the container (create tables and seed data)
     ```
     docker-compose run kode bin/cake migrations migrate
+    ```
+    ```
+    docker-compose run kode bin/cake migrations seed
     ```
 1. "Up" the container again
     ```
@@ -35,4 +38,7 @@ Please find installation links using the power of Google ;)
 
 1. (Optional, but awesome) Make an entry in ```/etc/hosts``` file pointing the container IP to the URL "kode.konnector.loal"
     ```172.28.1.1    kode.konnector.local```
+
+    The URL ```kode.konnector.local``` is set as the base URL for a GitHub app set to be run locally and the local version's OAUTH ID and SECRET are already in ```docker-compose.yml``` file
+
 
