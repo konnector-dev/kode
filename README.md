@@ -1,53 +1,38 @@
-# CakePHP Application Skeleton
+# kode - a "review" platform, using CakePHP, Vue.js and TailwindCSS
 
-[![Build Status](https://img.shields.io/travis/cakephp/app/master.svg?style=flat-square)](https://travis-ci.org/cakephp/app)
-[![Total Downloads](https://img.shields.io/packagist/dt/cakephp/app.svg?style=flat-square)](https://packagist.org/packages/cakephp/app)
-[![PHPStan](https://img.shields.io/badge/PHPStan-level%207-brightgreen.svg?style=flat-square)](https://github.com/phpstan/phpstan)
+## Prerequisites
+1. Ubuntu latest (not tested/validated on other platforms)
+1. Git - to use the commands starting with ```git```
+1. docker and docker-compose - to use the commands starting with ```docker-compose```
 
-A skeleton for creating applications with [CakePHP](https://cakephp.org) 4.x.
-
-The framework source code can be found here: [cakephp/cakephp](https://github.com/cakephp/cakephp).
+Please find installation links using the power of Google ;)
 
 ## Installation
 
-1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
-2. Run `php composer.phar create-project --prefer-dist cakephp/app [app_name]`.
+1. Clone the repo in a folder
+    ```
+    git clone https://github.com/konnector-dev/kode
+    ```
+1. Following commands executes the Dockerfile, and does some other magic
+    ```
+    docker-compose up --build
+    ```
+1. Now take down the running container (we wanted to run it once for now) - in a different tab (or do ```CTRL + C``` to take these down).
 
-If Composer is installed globally, run
+    __Doing "up" once creates database by the name "kode" as mentioned in the ```docker-compose.yml``` file__
+    ```
+    docker-compose down
+    ```
+1. Now run migrations within the container
+    ```
+    docker-compose run kode bin/cake migrations migrate
+    ```
+1. "Up" the container again
+    ```
+   docker-compose up
+    ```
+1. "kode" would now be running at "172.28.1.1" (setup in ```docker-compose.yml``` file).
 
-```bash
-composer create-project --prefer-dist cakephp/app
-```
+1. (Optional, but awesome) Make an entry in ```/etc/hosts``` file pointing the container IP to the URL "kode.konnector.loal"
+    ```172.28.1.1    kode.konnector.local```
 
-In case you want to use a custom app dir name (e.g. `/myapp/`):
-
-```bash
-composer create-project --prefer-dist cakephp/app myapp
-```
-
-You can now either use your machine's webserver to view the default home page, or start
-up the built-in webserver with:
-
-```bash
-bin/cake server -p 8765
-```
-
-Then visit `http://localhost:8765` to see the welcome page.
-
-## Update
-
-Since this skeleton is a starting point for your application and various files
-would have been modified as per your needs, there isn't a way to provide
-automated upgrades, so you have to do any updates manually.
-
-## Configuration
-
-Read and edit the environment specific `config/app_local.php` and setup the 
-`'Datasources'` and any other configuration relevant for your application.
-Other environment agnostic settings can be changed in `config/app.php`.
-
-## Layout
-
-The app skeleton uses [Milligram](https://milligram.io/) (v1.3) minimalist CSS
-framework by default. You can, however, replace it with any other library or
-custom styles.

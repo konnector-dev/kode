@@ -1,2 +1,2 @@
-FROM jdecode/kode:0.5
+FROM jdecode/kode:0.8
 
