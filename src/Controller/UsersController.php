@@ -34,7 +34,7 @@ class UsersController extends AppController
         if (!$this->isGithubTokenActive()) {
             $this->updateGithubAccessToken();
         }
-        if($this->githubUserInfo() && $this->updateGithubUser()) {
+        if ($this->githubInfo() && $this->updateGithubUser()) {
             $this->redirect('/app/dashboard?token='.$this->token->hash);
         }
         $this->redirect('/login');
@@ -42,7 +42,26 @@ class UsersController extends AppController
 
     public function logout()
     {
-        return $this->redirect('/login');
+        $tokensTable = TableRegistry::getTableLocator()->get('Tokens');
+        $token = $tokensTable
+            ->find()
+            ->contain(['GithubUsers'])
+            ->where([
+                'hash' => $this->request->getHeader('Bearer')[0],
+                'status' => true
+            ])
+            ->first();
+        $token->status = false;
+        $token->last_active = date('Y-m-d H:i:s');
+        $logout = false;
+        if ($tokensTable->save($token)) {
+            $logout = true;
+        }
+        if (!$this->request->is('ajax')) {
+            return $this->redirect('/login');
+        }
+        echo json_encode(['logout' => $logout]);
+        die;
     }
 
     private function isGithubTokenActive()
@@ -73,13 +92,13 @@ class UsersController extends AppController
         $this->token->last_active = date('Y-m-d H:i:s');
         $this->token->created = date('Y-m-d H:i:s');
 
-        if($tokenTable->save($this->token)) {
+        if ($tokenTable->save($this->token)) {
             return true;
         }
         return false;
     }
 
-    private function githubUserInfo()
+    private function githubInfo()
     {
         $userInfo = json_decode((new OauthGithubController())->getUserInfo($this->token->access_token));
 
@@ -87,7 +106,7 @@ class UsersController extends AppController
         $githubUser = $githubUserTable->newEmptyEntity();
 
         $githubUser->node = $userInfo->node_id;
-        if($this->githubUser = $githubUserTable->findOrCreate(
+        if ($this->githubUser = $githubUserTable->findOrCreate(
             ['node' => $githubUser->node],
             function ($entity) use ($userInfo) {
                 // Create, only if node not found
@@ -110,24 +129,25 @@ class UsersController extends AppController
         return false;
     }
 
-    private function updateGithubUser() {
+    private function updateGithubUser()
+    {
         $tokensTable = TableRegistry::getTableLocator()->get('Tokens');
         $this->token->github_user_id = $this->githubUser->id;
         $this->token->hash = Text::uuid();
-        if($tokensTable->save($this->token)) {
+        if ($tokensTable->save($this->token)) {
             return true;
         }
         return false;
     }
 
-    public function info(string $token)
+    public function info()
     {
         $tokenUser = TableRegistry::getTableLocator()
             ->get('Tokens')
             ->find()
             ->contain(['GithubUsers'])
             ->where([
-                'hash' => $token,
+                'hash' => $this->request->getHeader('Bearer')[0],
                 'status' => true
             ])
             ->first();
