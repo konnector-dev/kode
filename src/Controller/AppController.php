@@ -79,7 +79,7 @@ class AppController extends Controller
             ->where([
                 'status' => true
             ])
-            ->cache(fn($q) => 'sources-'.md5(serialize($q->clause('where'))))
+            ->cache(fn ($q) => 'sources-'.md5(serialize($q->clause('where'))))
             ->toArray();
     }
 }

@@ -138,10 +138,10 @@ class OauthGithubController extends AppController
         return $this->redirect($this->getGithubUrl());
     }
 
-    public function getUserInfo(string $access_token) {
+    public function getUserInfo(string $access_token)
+    {
         $this->curlGithubToken = $access_token;
         $this->curlGithubUrl = 'https://api.github.com/user';
         return $this->curlGithub();
     }
-
 }
