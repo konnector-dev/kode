@@ -65,7 +65,6 @@ $routes->scope('/', function (RouteBuilder $builder) {
     //$builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
     $builder->connect('/', ['controller' => 'Pages', 'action' => 'index']);
     $builder->connect('/login', ['controller' => 'Pages', 'action' => 'login']);
-    $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
 
     /*
      * ...and connect the rest of 'Pages' controller's URLs.
@@ -97,6 +96,7 @@ $routes->scope('/oauth-github', function (RouteBuilder $builder) {
 $routes->scope('/api', function (RouteBuilder $builder) {
     // No $builder->applyMiddleware() here.
     $builder->connect('/user-info/*', ['controller' => 'Users', 'action' => 'info']);
+    $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
 });
 
 $routes->scope('/', function (RouteBuilder $builder) {
