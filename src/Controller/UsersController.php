@@ -42,7 +42,25 @@ class UsersController extends AppController
 
     public function logout()
     {
-        return $this->redirect('/login');
+        $tokensTable = TableRegistry::getTableLocator()->get('Tokens');
+        $token = $tokensTable
+            ->find()
+            ->contain(['GithubUsers'])
+            ->where([
+                        'hash' => $this->request->getHeader('Bearer')[0],
+                        'status' => true
+                    ])
+            ->first();
+        $token->status = false;
+        $logout = false;
+        if($tokensTable->save($token)) {
+            $logout = true;
+            if(!$this->request->is('ajax')) {
+                return $this->redirect('/login');
+            }
+        }
+        echo json_encode(['logout' => $logout]);
+        die;
     }
 
     private function isGithubTokenActive()
@@ -120,14 +138,14 @@ class UsersController extends AppController
         return false;
     }
 
-    public function info(string $token)
+    public function info()
     {
         $tokenUser = TableRegistry::getTableLocator()
             ->get('Tokens')
             ->find()
             ->contain(['GithubUsers'])
             ->where([
-                'hash' => $token,
+                'hash' => $this->request->getHeader('Bearer')[0],
                 'status' => true
             ])
             ->first();
