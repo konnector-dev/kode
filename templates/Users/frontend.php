@@ -24,7 +24,8 @@ use Cake\Routing\Router;
     <?php
     $kode = [
         'serverDebug' => Configure::read('debug'),
-        'appName' => Configure::read('app_name'),
+        'appName' => Configure::read('kode.name'),
+        'Oauth' => Configure::read('kode.Oauth'),
         'encoding' => Configure::read('App.encoding'),
         'locale' => Configure::read('App.defaultLocale'),
         'timezone' => Configure::read('App.defaultTimezone'),

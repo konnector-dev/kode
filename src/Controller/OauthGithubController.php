@@ -39,8 +39,8 @@ class OauthGithubController extends AppController
     public function getGithubUrl()
     {
         $url = 'https://github.com/login/oauth/authorize?'
-            . 'client_id=' . Configure::read('Oauth.GitHub.id')
-            . '&redirect_uri=' . Configure::read('Oauth.GitHub.uri')
+            . 'client_id=' . Configure::read('kode.Oauth.GitHub.CLIENT_ID')
+            . '&redirect_uri=' . Configure::read('kode.Oauth.GitHub.REDIRECT_URI')
             . '&state=' . $this->hashBabyHash
             . '&scope=' . $this->getScopes();
         return $this->redirect($url);
