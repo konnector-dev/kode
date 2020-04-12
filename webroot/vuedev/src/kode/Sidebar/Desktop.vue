@@ -5,9 +5,9 @@
             <div
                 class="flex items-center h-16 flex-shrink-0 px-4"
                 :class="{'bg-gray-900': isDark, 'bg-gray-400': !isDark}">
-<!--                <img class="h-8 w-auto"-->
-<!--                     src="--><?php //echo Router::url('/img/kode.png'); ?><!--"-->
-<!--                     alt="--><?php //echo Configure::read('app_name'); ?><!--" />-->
+                <img class="h-8 w-auto"
+                     src="/img/kode.png"
+                     :alt="kode.appName" />
             </div>
             <div class="h-0 flex-1 flex flex-col overflow-y-auto">
                 <!-- Sidebar component, swap this element with another sidebar if you like -->

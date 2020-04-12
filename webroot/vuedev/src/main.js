@@ -1,10 +1,13 @@
 import Vue from 'vue'
 
+import Vuex from 'vuex';
+
 import VueRouter from 'vue-router'
 
 import routes from './routes';
 
-import UserSettings from '@/components/UserSettings'
+// Copying CakePHP view elements to Vue (feels weird)
+import Kue from "./kode/Kue";
 
 import Axios from 'axios';
 
@@ -12,11 +15,13 @@ window.axios = Axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 Vue.use(VueRouter);
+Vue.use(Vuex);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
     el: '.darkLight',
+    store,
     data: {
         isDark: false,
         token: '',
@@ -60,7 +65,7 @@ new Vue({
         }
     },
     components:{
-        UserSettings
+        Kue
     },
     router: new VueRouter(routes)
 });

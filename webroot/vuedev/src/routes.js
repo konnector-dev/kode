@@ -1,7 +1,7 @@
-import Dashboard from './components/Dashboard'
-import Projects from './components/Projects'
-import Teams from './components/Teams'
-import Error404 from './components/Error404'
+import Dashboard from './kode/components/Dashboard'
+import Projects from './kode/components/Projects'
+import Teams from './kode/components/Teams'
+import Error404 from './kode/components/Error404'
 
 export default {
     base: '/app/',
