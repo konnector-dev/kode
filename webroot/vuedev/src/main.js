@@ -1,8 +1,8 @@
 import Vue from 'vue'
 
-import Vuex from 'vuex';
-
 import VueRouter from 'vue-router'
+
+import store from "./store";
 
 import routes from './routes';
 
@@ -15,55 +15,59 @@ window.axios = Axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 Vue.use(VueRouter);
-Vue.use(Vuex);
 
 Vue.config.productionTip = false;
+
+let kue = Vue.compile('<Kue></Kue>');
+
 
 new Vue({
     el: '.darkLight',
     store,
     data: {
-        isDark: false,
-        token: '',
-        isMobileMenuOpen: false
     },
-    created () {
-
-        if (localStorage.isDark) {
-            this.isDark = JSON.parse(localStorage.isDark);
-        }
-        this.updateLinkActiveClass();
-    },
-    mounted ()
+    created ()
     {
         this.checkToken();
+        this.setKonfig();
     },
-    updated() {
-        this.updateLinkActiveClass();
+    mounted() {
+        this.setMode();
     },
     methods: {
         checkToken: function() {
+            let token = '';
             if(typeof this.$route.query.token === 'undefined') {
                 if (localStorage.token) {
-                    this.token = localStorage.token;
+                    token = localStorage.token;
                 }
             } else {
-                this.token = this.$route.query.token;
-                localStorage.token = this.token;
-                this.$router.replace('dashboard').then();
+                token = this.$route.query.token;
             }
-            if(this.token === '') {
+            if(token === '') {
+                localStorage.removeItem('token');
                 window.location.href = '/login';
             }
+            localStorage.token = token;
+            this.$store.state.token = token;
+            if( typeof this.$route.query.token !== 'undefined' && this.$route.query.token.length > 0) {
+                this.$router.replace(this.$router.currentRoute.path).then();
+            }
         },
-        modeUpdate: function() {
-            localStorage.isDark = this.isDark = !this.isDark;
-            this.updateLinkActiveClass();
+        setMode: function () {
+            let lightMode = true;
+            if(typeof localStorage.isDark !== 'undefined') {
+                lightMode = JSON.parse(localStorage.isDark);
+            }
+            this.$store.dispatch("THEME_UPDATE", lightMode).then();
         },
-        updateLinkActiveClass: function () {
-            routes.linkActiveClass = (this.isDark ? 'bg-gray-900' : 'bg-gray-400');
+        setKonfig: function () {
+            Axios.get('/konfig').then( konfig => {
+                this.$store.dispatch('SET_KODE', konfig).then();
+            });
         }
     },
+    render: kue.render,
     components:{
         Kue
     },

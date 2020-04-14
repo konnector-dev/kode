@@ -21,32 +21,16 @@ use Cake\Routing\Router;
     <link href="<?php echo Router::url('/fonts/font-awesome.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo Router::url('/vuedev/tailwind-style.css'); ?>" rel="stylesheet">
 
-    <?php
-    $kode = [
-        'serverDebug' => Configure::read('debug'),
-        'appName' => Configure::read('kode.name'),
-        'Oauth' => Configure::read('kode.Oauth'),
-        'encoding' => Configure::read('App.encoding'),
-        'locale' => Configure::read('App.defaultLocale'),
-        'timezone' => Configure::read('App.defaultTimezone'),
-        'fullBaseUrl' => Configure::read('App.fullBaseUrl'),
-        'baseUrl' => Router::url('/', true)
-    ];
-    ?>
-    <script id="konfig" type="application/json">
-        <?php
-        echo json_encode($kode);
-        ?>
-    </script>
-    <script>
-        const kode = JSON.parse(document.getElementById( 'konfig' ).innerHTML);
-        console.log(kode);
-    </script>
 </head>
 
 <body>
-<div id="app" class="darkLight h-screen flex overflow-hidden">
+<div class="bg-gray-600 h-screen">
+    <div id="app" class="darkLight flex flex-col overflow-hidden">
 
+    </div>
+    <footer class="flex-col text-center text-gray-600 bg-gray-700 -mt-8">
+        &copy; 2020
+    </footer>
 </div>
 <script src="<?php echo Router::url('/vuedev/dist/js/app.js') ?>"></script>
 <script src="<?php echo Router::url('/vuedev/dist/js/chunk-vendors.js') ?>"></script>

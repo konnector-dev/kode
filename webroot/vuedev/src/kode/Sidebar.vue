@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="flex">
         <Mobile></Mobile>
         <Desktop></Desktop>
     </div>

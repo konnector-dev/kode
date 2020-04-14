@@ -4,21 +4,22 @@
         <div class="flex flex-col w-64">
             <div
                 class="flex items-center h-16 flex-shrink-0 px-4"
-                :class="{'bg-gray-900': isDark, 'bg-gray-400': !isDark}">
+                :class="{'bg-gray-900': this.dark, 'bg-gray-400': !this.dark}">
                 <img class="h-8 w-auto"
                      src="/img/kode.png"
-                     :alt="kode.appName" />
+                     alt="kode" />
             </div>
             <div class="h-0 flex-1 flex flex-col overflow-y-auto">
                 <!-- Sidebar component, swap this element with another sidebar if you like -->
                 <nav class="flex-1 px-2 py-4 bg-gray-300"
-                     :class="{'bg-gray-800': isDark}">
-                    <router-link to="dashboard"
-                                 class="
+                     :class="{'bg-gray-800': this.dark}">
+                    <router-link
+                        to="dashboard"
+                        class="
                         group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md"
-                                 :class="{
-                        'text-gray-400 focus:bg-gray-900 hover:bg-gray-900': isDark,
-                        'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !isDark
+                        :class="{
+                        'text-gray-400 focus:bg-gray-900 hover:bg-gray-900': this.dark,
+                        'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !this.dark
                     }"
                     >
                     <span class="mr-3 h-6 w-6">
@@ -31,8 +32,8 @@
                         mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md
                         focus:outline-none"
                                  :class="{
-                        'text-gray-400 focus:bg-gray-900 hover:bg-gray-900': isDark,
-                        'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !isDark
+                        'text-gray-400 focus:bg-gray-900 hover:bg-gray-900': this.dark,
+                        'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !this.dark
                     }"
                     >
                     <span class="mr-3 h-6 w-6">
@@ -45,8 +46,8 @@
                         mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md
                         focus:outline-none"
                                  :class="{
-                        'text-gray-400 focus:bg-gray-900 hover:bg-gray-900': isDark,
-                        'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !isDark
+                        'text-gray-400 focus:bg-gray-900 hover:bg-gray-900': this.dark,
+                        'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !this.dark
                     }"
                     >
                     <span class="mr-3 h-6 w-6">
@@ -59,8 +60,8 @@
                         mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md
                         focus:outline-none"
                                  :class="{
-                        'text-gray-400 focus:bg-gray-900 hover:bg-gray-900': isDark,
-                        'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !isDark
+                        'text-gray-400 focus:bg-gray-900 hover:bg-gray-900': this.dark,
+                        'text-gray-900 focus:bg-gray-400 hover:bg-gray-400': !this.dark
                     }"
                     >
                     <span class="mr-3 h-6 w-6">
@@ -74,5 +75,14 @@
     </div>
 </template>
 <script>
-    export default {};
+    export default {
+        computed: {
+            dark() {
+                return this.$store.getters.DARK
+            },
+            kode() {
+                return this.$store.getters.KODE
+            }
+        }
+    };
 </script>

@@ -6,6 +6,7 @@ import Error404 from './kode/components/Error404'
 export default {
     base: '/app/',
     mode: 'history',
+    linkActiveClass: 'linkActive',
     routes: [
         {
             path: '*',

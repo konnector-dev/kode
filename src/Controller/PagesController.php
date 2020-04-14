@@ -20,6 +20,7 @@ use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
+use Cake\Routing\Router;
 use Cake\View\Exception\MissingTemplateException;
 
 /**
@@ -73,10 +74,27 @@ class PagesController extends AppController
         return $this->render();
     }
 
-    public function index() {
+    public function index()
+    {
     }
 
-    public function login() {
+    public function login()
+    {
     }
 
+    public function konfig()
+    {
+        $kode = [
+            'serverDebug' => Configure::read('debug'),
+            'appName' => Configure::read('kode.name'),
+            //'Oauth' => Configure::read('kode.Oauth'),
+            'encoding' => Configure::read('App.encoding'),
+            'locale' => Configure::read('App.defaultLocale'),
+            'timezone' => Configure::read('App.defaultTimezone'),
+            'fullBaseUrl' => Configure::read('App.fullBaseUrl'),
+            'baseUrl' => Router::url('/', true)
+        ];
+        echo json_encode($kode);
+        die;
+    }
 }

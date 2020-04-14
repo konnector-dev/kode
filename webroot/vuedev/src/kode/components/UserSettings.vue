@@ -3,7 +3,7 @@
         <div class="ml-1 relative">
             <div>
                 <button
-                    v-on:click="toggleOptions"
+                    @click="toggleOptions"
                     class="
                     p-1 text-gray-500 rounded-full w-10 text-xl
                     hover:bg-gray-100 hover:text-gray-700
@@ -42,7 +42,7 @@
     window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
     export default {
-        created () {
+        mounted () {
             this.open = false;
             this.isUserImage = false;
             this.userImage = '/img/jdecode.png';
@@ -55,21 +55,20 @@
                 }
             })
             .then(response => {
-                    console.log(response.data.name.length);
-                    if(response.data.name.length === 0) {
-                        if(localStorage.token) {
-                            localStorage.removeItem('token');
-                        }
-                        //window.location.href = `${window.app_url}login`;
-                        return;
+                if( typeof response.data.name === 'undefined' || response.data.name.length === 0) {
+                    if(localStorage.token) {
+                        localStorage.removeItem('token');
                     }
-                    this.user = response.data;
-                    this.updateUser();
+                    document.location.href = '/login';
+                    return;
+                }
+                this.user = response.data;
+                this.updateUser();
             })
             .catch(function (error) {
                 console.log(error);
                 localStorage.removeItem('token');
-                //window.location.href = `${window.app_url}login`;
+                document.location.href = '/login';
             });
         },
         methods: {
@@ -92,7 +91,7 @@
                     if(response) {
                         console.log(response);
                     }
-                    window.location.replace(`${window.app_url}login`);
+                    document.location.href = '/login';
                 });
             }
         },

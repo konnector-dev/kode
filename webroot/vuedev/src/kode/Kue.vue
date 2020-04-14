@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="flex h-screen">
         <Sidebar></Sidebar>
         <MainSection></MainSection>
     </div>

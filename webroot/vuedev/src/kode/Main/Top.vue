@@ -1,8 +1,8 @@
 <template>
     <div class="relative z-10 flex-shrink-0 flex h-16"
-         :class="{'bg-gray-800': isDark, 'bg-gray-300': !isDark}">
+         :class="{'bg-gray-800': dark, 'bg-gray-300': !dark}">
         <button
-            @click="isMobileMenuOpen=true"
+            @click="this.toggleMenu"
             class="
             mobileSidebarOpener
             px-4 text-gray-500
@@ -26,8 +26,8 @@
                 <div
                     class="w-full flex md:ml-0"
                     :class="{
-                            'text-gray-300 focus:bg-gray-900 hover:bg-gray-900': isDark,
-                            'text-gray-900 focus:bg-gray-300 hover:bg-gray-300': !isDark
+                            'text-gray-300 focus:bg-gray-900 hover:bg-gray-900': dark,
+                            'text-gray-900 focus:bg-gray-300 hover:bg-gray-300': !dark
                         }"
                 >
                     <label for="search_field" class="sr-only">Search</label>
@@ -36,8 +36,8 @@
                         <div class="absolute flex items-center pointer-events-none">
                         <span class="h-5 w-5 px-1 py-5"
                               :class="{
-                                'text-gray-500': isDark,
-                                'text-gray-600': !isDark
+                                'text-gray-500': dark,
+                                'text-gray-600': !dark
                             }"
                         >
                             <i class="fa fa-search"></i>
@@ -49,8 +49,8 @@
                             block w-full h-full pl-8 pr-3 py-2
                             focus:outline-none sm:text-sm"
                             :class="{
-                            'text-gray-300 bg-gray-800 focus:bg-gray-800 focus:placeholder-gray-600': isDark,
-                            'text-gray-700 bg-gray-300 placeholder-gray-600 focus:placeholder-gray-500': !isDark
+                            'text-gray-300 bg-gray-800 focus:bg-gray-800 focus:placeholder-gray-600': dark,
+                            'text-gray-700 bg-gray-300 placeholder-gray-600 focus:placeholder-gray-500': !dark
                         }"
                             placeholder="Search" />
                     </div>
@@ -71,11 +71,11 @@
                         p-1 mx-1 text-gray-400 rounded-full w-10 text-xl
                         hover:bg-gray-100 hover:text-gray-500
                         focus:outline-none focus:shadow-outline"
-                    v-on:click="modeUpdate">
-                    <span :class="{'hidden': isDark}" title="Dark mode" class="text-kored">
+                    @click="this.modeUpdate">
+                    <span :class="{'hidden': dark}" title="Dark mode" class="text-kored">
                         <i class="fa fa-moon-o"></i>
                     </span>
-                    <span :class="{'hidden': !isDark}" title="Light mode" class="text-kored">
+                    <span :class="{'hidden': !dark}" title="Light mode" class="text-kored">
                         <i class="fa fa-sun-o"></i>
                     </span>
                 </button>
@@ -88,8 +88,27 @@
 <script>
     import UserSettings from "../components/UserSettings";
     export default {
+        computed: {
+            dark() {
+                return this.$store.getters.DARK
+            },
+            kode() {
+                return this.$store.getters.KODE
+            }
+        },
+        methods: {
+            modeUpdate: function () {
+                this.$store.dispatch("THEME_UPDATE", !this.dark);
+            },
+            toggleMenu: function () {
+                return !this.isMobileMenuOpen;
+            }
+        },
         components: {
             UserSettings
+        },
+        created() {
+            this.isMobileMenuOpen = false;
         }
     };
 </script>
