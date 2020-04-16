@@ -1,5 +1,5 @@
 <template>
-    <div v-show="dark" class="mobile-sidebar md:hidden">
+    <div v-show="isMobileMenuOpen" class="mobile-sidebar md:hidden">
         <!-- Off-canvas menu for mobile -->
         <div class="fixed inset-0 z-30 transition-opacity ease-linear duration-300">
             <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
@@ -11,7 +11,7 @@
                 <div class="absolute top-0 right-0 -mr-14 p-1"
                 >
                     <button
-                        @click="this.isMobileMenuOpen = false"
+                        @click="hideMenu"
                         class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600">
                         <span class="h-6 w-6 text-gray-600 text-xl">
                             <i class="fa fa-times"></i>
@@ -28,7 +28,7 @@
                 >
                     <nav class="px-2 bg-gray-300"
                          :class="{'bg-gray-800': dark}"
-                         @click="this.isMobileMenuOpen=false"
+                         @click="hideMenu"
                     >
                         <router-link to="dashboard"
                                      class="
@@ -104,6 +104,14 @@
             },
             kode() {
                 return this.$store.getters.KODE
+            },
+            isMobileMenuOpen() {
+                return this.$store.getters.MOBILE
+            }
+        },
+        methods: {
+            hideMenu: function () {
+                this.$store.dispatch('CLOSE_MOBILE_SIDEBAR');
             }
         }
     };

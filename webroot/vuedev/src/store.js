@@ -33,6 +33,9 @@ export default new Vuex.Store({
         THEME_UPDATE: ((state, isDark) => {
             localStorage.isDark = isDark;
             state.isDark = isDark;
+        }),
+        MOBILE_SIDEBAR: ((state, status) => {
+            state.isMobileMenuOpen = status;
         })
     },
     actions: {
@@ -41,6 +44,12 @@ export default new Vuex.Store({
         },
         THEME_UPDATE: ((context, dark) => {
             context.commit('THEME_UPDATE', dark);
+        }),
+        OPEN_MOBILE_SIDEBAR: ((context) => {
+            context.commit('MOBILE_SIDEBAR', true);
+        }),
+        CLOSE_MOBILE_SIDEBAR: ((context) => {
+            context.commit('MOBILE_SIDEBAR', false);
         })
     }
 });

@@ -2,14 +2,14 @@
     <div class="relative z-10 flex-shrink-0 flex h-16"
          :class="{'bg-gray-800': dark, 'bg-gray-300': !dark}">
         <button
-            @click="this.toggleMenu"
+            @click="showMenu"
             class="
             mobileSidebarOpener
             px-4 text-gray-500
             focus:outline-none focus:bg-gray-100 focus:text-gray-600 md:hidden">
-            <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
-            </svg>
+            <span class="h-6 w-6" >
+                <i class="fa fa-bars"></i>
+            </span>
         </button>
         <div class="flex-1 px-4 flex justify-between">
             <div class="flex-none items-stretch organisations hidden md:flex h-full">
@@ -71,7 +71,7 @@
                         p-1 mx-1 text-gray-400 rounded-full w-10 text-xl
                         hover:bg-gray-100 hover:text-gray-500
                         focus:outline-none focus:shadow-outline"
-                    @click="this.modeUpdate">
+                    @click="modeUpdate">
                     <span :class="{'hidden': dark}" title="Dark mode" class="text-kored">
                         <i class="fa fa-moon-o"></i>
                     </span>
@@ -100,15 +100,12 @@
             modeUpdate: function () {
                 this.$store.dispatch("THEME_UPDATE", !this.dark);
             },
-            toggleMenu: function () {
-                return !this.isMobileMenuOpen;
+            showMenu: function () {
+                this.$store.dispatch('OPEN_MOBILE_SIDEBAR');
             }
         },
         components: {
             UserSettings
-        },
-        created() {
-            this.isMobileMenuOpen = false;
         }
     };
 </script>
