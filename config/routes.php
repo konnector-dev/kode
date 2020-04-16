@@ -63,15 +63,11 @@ $routes->scope('/', function (RouteBuilder $builder) {
      * to use (in this case, templates/Pages/home.php)...
      */
     //$builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
-    $builder->connect('/', ['controller' => 'Pages', 'action' => 'index']);
-    $builder->connect('/konfig', ['controller' => 'Pages', 'action' => 'konfig']);
-    $builder->connect('/login', ['controller' => 'Pages', 'action' => 'login']);
 
     /*
      * ...and connect the rest of 'Pages' controller's URLs.
      */
-    $builder->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
-    $builder->connect('/app/*', ['controller' => 'Users', 'action' => 'frontend']);
+    //$builder->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
     /*
      * Connect catchall routes for all controllers.
@@ -86,7 +82,16 @@ $routes->scope('/', function (RouteBuilder $builder) {
      * You can remove these routes once you've connected the
      * routes you want in your application.
      */
-    $builder->fallbacks();
+    //$builder->fallbacks();
+});
+
+$routes->scope('/', function (RouteBuilder $builder) {
+    $builder->connect('', ['controller' => 'Pages', 'action' => 'index']);
+    $builder->connect('login', ['controller' => 'Pages', 'action' => 'login']);
+    $builder->connect('github-callback', ['controller' => 'Users', 'action' => 'githubCallback']);
+    $builder->connect('dashboard', ['controller' => 'Users', 'action' => 'dashboard']);
+    $builder->connect('konfig', ['controller' => 'Pages', 'action' => 'konfig']);
+    $builder->connect('app/*', ['controller' => 'Users', 'action' => 'frontend']);
 });
 
 $routes->scope('/oauth-github', function (RouteBuilder $builder) {
@@ -99,12 +104,6 @@ $routes->scope('/api', function (RouteBuilder $builder) {
     $builder->connect('/user-info/*', ['controller' => 'Users', 'action' => 'info']);
     $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
 });
-
-$routes->scope('/', function (RouteBuilder $builder) {
-    $builder->connect('github-callback', ['controller' => 'Users', 'action' => 'githubCallback']);
-    $builder->connect('dashboard', ['controller' => 'Users', 'action' => 'dashboard']);
-});
-
 
 /*
  * If you need a different set of middleware or none at all,
