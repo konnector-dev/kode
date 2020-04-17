@@ -24,6 +24,7 @@
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
+use App\Middleware\AuthMiddleware;
 
 /*
  * The default class to use for all routes
@@ -42,7 +43,7 @@ use Cake\Routing\RouteBuilder;
  * inconsistently cased URLs when used with `:plugin`, `:controller` and
  * `:action` markers.
  */
-/** @var \Cake\Routing\RouteBuilder $routes */
+/** @var RouteBuilder $routes */
 $routes->setRouteClass(DashedRoute::class);
 
 $routes->scope('/', function (RouteBuilder $builder) {
@@ -100,7 +101,8 @@ $routes->scope('/oauth-github', function (RouteBuilder $builder) {
 });
 
 $routes->scope('/api', function (RouteBuilder $builder) {
-    // No $builder->applyMiddleware() here.
+    $builder->registerMiddleware('AuthMiddleware', new AuthMiddleware());
+    $builder->applyMiddleware('AuthMiddleware');
     $builder->connect('/user-info/*', ['controller' => 'Users', 'action' => 'info']);
     $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
 });
