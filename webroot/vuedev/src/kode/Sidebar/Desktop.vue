@@ -1,3 +1,4 @@
+<!--suppress HtmlUnknownTarget -->
 <template>
     <div class="hidden md:flex md:flex-shrink-0">
         <!-- Static sidebar for desktop -->
@@ -6,8 +7,9 @@
                 class="flex items-center h-16 flex-shrink-0 px-4"
                 :class="{'bg-gray-900': this.dark, 'bg-gray-400': !this.dark}">
                 <img class="h-8 w-auto"
-                     src="/img/kode.png"
-                     alt="kode" />
+                     :src="kode.data.baseUrl + 'img/kode.png'"
+                     :alt="kode.data.appName"
+                    />
             </div>
             <div class="h-0 flex-1 flex flex-col overflow-y-auto">
                 <!-- Sidebar component, swap this element with another sidebar if you like -->
