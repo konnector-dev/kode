@@ -3,7 +3,8 @@ node_modules
 
 # CakePHP specific files #
 ##########################
-/config/app_local.php
+# Keep app_local.php, rather than having the need to use .env for docker-compose enabled local development (redundant:yes, simple:yes)
+#/config/app_local.php
 /config/.env
 /logs/*
 /tmp/*
