@@ -60,13 +60,11 @@
                         localStorage.removeItem('token');
                     }
                     document.location.href = '/login';
-                    return;
                 }
                 this.user = response.data;
                 this.updateUser();
             })
-            .catch(function (error) {
-                console.log(error);
+            .catch(function () {
                 localStorage.removeItem('token');
                 document.location.href = '/login';
             });
@@ -86,11 +84,8 @@
                     headers: {
                         bearer: localStorage.token
                     }
-                }).then(response => {
+                }).then(() => {
                     localStorage.removeItem('token');
-                    if(response) {
-                        console.log(response);
-                    }
                     document.location.href = '/login';
                 });
             }
