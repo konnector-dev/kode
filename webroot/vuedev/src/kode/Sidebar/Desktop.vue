@@ -2,15 +2,9 @@
 <template>
     <div class="hidden md:flex md:flex-shrink-0">
         <!-- Static sidebar for desktop -->
-        <div class="flex flex-col w-64">
-            <div
-                class="flex items-center h-16 flex-shrink-0 px-4"
-                :class="{'bg-gray-900': this.dark, 'bg-gray-400': !this.dark}">
-                <img class="h-8 w-auto"
-                     :src="kode.data.baseUrl + 'img/kode.png'"
-                     :alt="kode.data.appName"
-                    />
-            </div>
+        <div class="flex flex-col w-64"
+             :class="{'bg-gray-900': this.dark, 'bg-gray-400': !this.dark}">
+            <kode-logo></kode-logo>
             <div class="h-0 flex-1 flex flex-col overflow-y-auto">
                 <!-- Sidebar component, swap this element with another sidebar if you like -->
                 <nav class="flex-1 px-2 py-4 bg-gray-300"
@@ -77,14 +71,15 @@
     </div>
 </template>
 <script>
+    import KodeLogo from "../components/KodeLogo";
     export default {
         computed: {
             dark() {
                 return this.$store.getters.DARK
-            },
-            kode() {
-                return this.$store.getters.KODE
             }
+        },
+        components: {
+            KodeLogo
         }
     };
 </script>

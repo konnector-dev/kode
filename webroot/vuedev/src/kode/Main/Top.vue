@@ -12,16 +12,7 @@
             </span>
         </button>
         <div class="flex-1 px-4 flex justify-between">
-            <div class="flex-none items-stretch organisations hidden md:flex h-full">
-                <div class="self-center text-gray-500 mx-4 w-40">
-                    <p>
-                        <i class="fa fa-chevron-circle-down"></i>
-                        <span class="pl-1">
-                        No organisation
-                    </span>
-                    </p>
-                </div>
-            </div>
+            <organisations></organisations>
             <div class="flex-1 flex">
                 <div
                     class="w-full flex md:ml-0"
@@ -87,6 +78,7 @@
 
 <script>
     import UserSettings from "../components/UserSettings";
+    import Organisations from "../components/Organisations";
     export default {
         computed: {
             dark() {
@@ -105,7 +97,8 @@
             }
         },
         components: {
-            UserSettings
+            UserSettings,
+            Organisations
         }
     };
 </script>

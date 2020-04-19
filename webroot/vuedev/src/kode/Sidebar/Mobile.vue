@@ -18,11 +18,7 @@
                         </span>
                     </button>
                 </div>
-                <div class="flex-shrink-0 flex items-center px-4">
-                    <img class="h-8 w-auto"
-                         src="/img/kode.png"
-                         alt="kode" />
-                </div>
+                <kode-logo></kode-logo>
                 <div class="mt-5 flex-1 h-0 overflow-y-auto bg-gray-300"
                      :class="{'bg-gray-800': dark}"
                 >
@@ -97,13 +93,11 @@
 </template>
 
 <script>
+    import KodeLogo from "../components/KodeLogo";
     export default {
         computed: {
             dark() {
                 return this.$store.getters.DARK
-            },
-            kode() {
-                return this.$store.getters.KODE
             },
             isMobileMenuOpen() {
                 return this.$store.getters.MOBILE
@@ -113,6 +107,9 @@
             hideMenu: function () {
                 this.$store.dispatch('CLOSE_MOBILE_SIDEBAR');
             }
+        },
+        components: {
+            KodeLogo
         }
     };
 </script>
