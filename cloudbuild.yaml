@@ -1,0 +1,49 @@
+steps:
+  # build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/${_CLOUD_RUN_SERVICE}', '.']
+  # push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/${_CLOUD_RUN_SERVICE}']
+  # Deploy container image to Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: [
+    'beta',
+    'run',
+    'deploy',
+    '--allow-unauthenticated',
+    '${_CLOUD_RUN_SERVICE}',
+    '--image',
+    'gcr.io/$PROJECT_ID/${_CLOUD_RUN_SERVICE}',
+    '--region',
+    'europe-west1',
+    '--platform',
+    'managed',
+    '--memory',
+    '128Mi',
+    '--update-env-vars',
+    'DEBUG=${_DEBUG},
+    SECURITY_SALT=${_SECURITY_SALT},
+    APP_ENCODING=UTF-8,
+    APP_DEFAULT_LOCALE=en_US,
+    APP_DEFAULT_TIMEZONE=UTC,
+    DATABASE_URL=${_DATABASE_URL},
+    GOOGLE_CLOUD_PROJECT=${PROJECT_ID},
+    OAUTHAPP_GITHUB_CLIENT_ID=${_OAUTHAPP_GITHUB_CLIENT_ID},
+    OAUTHAPP_GITHUB_CLIENT_SECRET=${_OAUTHAPP_GITHUB_CLIENT_SECRET},
+    OAUTHAPP_GITHUB_REDIRECT_URI=${_OAUTHAPP_GITHUB_REDIRECT_URI}'
+    ]
+images:
+- gcr.io/$PROJECT_ID/${_CLOUD_RUN_SERVICE}
+
+options:
+    substitution_option: 'ALLOW_LOOSE'
+
+substitutions:
+    _DEBUG: 'true'
+    _SECURITY_SALT: ''
+    _CLOUD_RUN_SERVICE: 'koder'
+    _DATABASE_URL: ''
+    _OAUTHAPP_GITHUB_CLIENT_ID: '',
+    _OAUTHAPP_GITHUB_CLIENT_SECRET: '',
+    _OAUTHAPP_GITHUB_REDIRECT_URI: ''
