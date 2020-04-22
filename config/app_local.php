@@ -68,7 +68,7 @@ return [
             /**
              * You can use a DSN string to set the entire configuration
              */
-            'url' => env('DATABASE_URL', 'postgres://postgres:docker@172.28.1.2/kode'),
+            'url' => env('DATABASE_URL', ''),
         ],
 
         /*
