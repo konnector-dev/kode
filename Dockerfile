@@ -6,3 +6,4 @@ RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/a
 
 RUN composer install -n --prefer-dist
 
+RUN npm install 
