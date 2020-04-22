@@ -16,7 +16,7 @@ declare(strict_types=1);
  */
 
 Sentry\init([
-    'dsn' => 'https://23b86d7dc0ad4e808650430795ec837e@o171093.ingest.sentry.io/1810636'
+    'dsn' => env('SENTRY_DSN', '')
 ]);
 
 /*

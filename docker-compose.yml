@@ -22,6 +22,7 @@ services:
       OAUTHAPP_GITHUB_REDIRECT_URI: http://kode.konnector.local/oauth-github/auth
       DEBUG: 'true'
       SECURITY_SALT: 49e558df8e733a6daedbe054a9ccd7add9d9a6efa8a96cf3248815c364b47391
+      SENTRY_DSN: https://39c8ac0866bc4171bec2539819757cc0@o171093.ingest.sentry.io/5210080
     networks:
       testing_net:
         ipv4_address: 172.28.1.1
