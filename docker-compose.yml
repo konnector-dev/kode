@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        PORT: 80
+        BUILD: 'local'
     image: koreview:1.1
     ports:
       - 8080:80
@@ -30,7 +30,7 @@ services:
   pg:
     image: postgres:latest
     ports:
-    - 5432:5432
+    - 5432:54320
     volumes:
       - db_data:/var/lib/postgres
     environment:
