@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        BUILD: 'local'
     image: koreview:1.1
     ports:
       - 8080:80
@@ -20,6 +22,7 @@ services:
       OAUTHAPP_GITHUB_REDIRECT_URI: http://kode.konnector.local/oauth-github/auth
       DEBUG: 'true'
       SECURITY_SALT: 49e558df8e733a6daedbe054a9ccd7add9d9a6efa8a96cf3248815c364b47391
+      SENTRY_DSN: https://39c8ac0866bc4171bec2539819757cc0@o171093.ingest.sentry.io/5210080
     networks:
       testing_net:
         ipv4_address: 172.28.1.1
@@ -27,7 +30,7 @@ services:
   pg:
     image: postgres:latest
     ports:
-    - 5432:5432
+    - 5432:54320
     volumes:
       - db_data:/var/lib/postgres
     environment:

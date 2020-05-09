@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build-css": "tailwind build src/tailwind/style.css -o tailwind-style.css",
+    "build-css": "tailwind build src/tailwind/style.css -o webroot/css/style.css",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --watch",
+    "watch": "vue-cli-service build --watch",
+    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@sentry/browser": "^5.15.5",
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "tailwindcss": "^1.2.0",

@@ -15,6 +15,10 @@ declare(strict_types=1);
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
+Sentry\init([
+    'dsn' => env('SENTRY_DSN', '')
+]);
+
 /*
  * Configure paths required to find CakePHP + general filepath constants
  */

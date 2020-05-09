@@ -19,7 +19,7 @@ use Cake\Routing\Router;
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link href="<?php echo Router::url('/fonts/font-awesome.min.css'); ?>" rel="stylesheet">
-    <link href="<?php echo Router::url('/vuedev/tailwind-style.css'); ?>" rel="stylesheet">
+    <link href="<?php echo Router::url('/css/style.css'); ?>" rel="stylesheet">
 
 </head>
 
@@ -32,8 +32,8 @@ use Cake\Routing\Router;
         &copy; <?=date('Y')?>
     </footer>
 </div>
-<script src="<?php echo Router::url('/vuedev/dist/js/app.js') ?>"></script>
-<script src="<?php echo Router::url('/vuedev/dist/js/chunk-vendors.js') ?>"></script>
+<script src="<?php echo Router::url('/dist/js/app.js') ?>"></script>
+<script src="<?php echo Router::url('/dist/js/chunk-vendors.js') ?>"></script>
 </body>
 
 </html>
