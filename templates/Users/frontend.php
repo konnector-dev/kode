@@ -29,7 +29,7 @@ use Cake\Routing\Router;
 
     </div>
     <footer class="flex-col text-center text-gray-600 bg-gray-700 -mt-8">
-        &copy; 2020
+        &copy; <?=date('Y')?>
     </footer>
 </div>
 <script src="<?php echo Router::url('/vuedev/dist/js/app.js') ?>"></script>
